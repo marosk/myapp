@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -26,16 +26,21 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-	@post.message.reverse!
-	
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Message was successfully reversed.' }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+	# Reverse string
+	if(@post.message.size == 0)
+	  render "posts/new"
+	else
+	  @post.message.reverse!
+		
+	  respond_to do |format|
+	  if @post.save
+		format.html { redirect_to @post, notice: 'Message was successfully reversed.' }
+		format.json { render action: 'show', status: :created, location: @post }
+	  else
+		format.html { render action: 'new' }
+		format.json { render json: @post.errors, status: :unprocessable_entity }
+	  end
+	 end
     end
   end
 
