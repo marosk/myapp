@@ -1,9 +1,9 @@
-<h1>Listing posts</h1>
+<h1>Archive Messages</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Message</th>
+      <th>Reversed Messages:</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,7 +15,6 @@
       <tr>
         <td><%= post.message %></td>
         <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
